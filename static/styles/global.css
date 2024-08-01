@@ -2,12 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face{
+@font-face {
     font-family: matura;
     src: url("../fonts/MATURASC_1.TTF");
 }
 
-*{
+* {
     font-family: sans-serif;
 }
 
@@ -15,7 +15,7 @@
     font-family: matura;
 }
 
-.bg-image { 
+.bg-image {
     background-image: url("../images/BG.jpg");
     position: fixed;
     top: 0;
@@ -23,4 +23,28 @@
     right: 0;
     bottom: 0;
     z-index: -100 !important;
+}
+
+.bg-input {
+    background-color: #1e2a4db0;
+}
+
+input[type=checkbox] {
+    appearance: none;
+    border: 2px solid #0284c7;
+    padding: 10px;
+    transition: 300ms;
+    position: relative;
+    border-radius: 5px;
+}
+
+input[type=checkbox]:checked::before {
+    content: "";
+    background-color: #6b91f8;
+    position: absolute;
+    border-radius: 2px;
+    top: 15%;
+    left: 15%;
+    right: 15%;
+    bottom: 15%;
 }
