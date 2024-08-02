@@ -11,14 +11,7 @@ export default function Layout({ children }) {
         <html>
             <body>
                 <StoreProvider>
-                    <div className="md:grid flex flex-col flex-col-reverse grid-cols-12">
-                        <div className="col-span-2 md:static fixed bottom-0 left-0 right-0">
-                            <LeftSideBar />
-                        </div>
-                        <div className="col-span-10">
-                            {children}
-                        </div>
-                    </div>
+                    {children}
                 </StoreProvider>
             </body>
         </html>

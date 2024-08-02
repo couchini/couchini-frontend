@@ -13,8 +13,6 @@ import 'react-phone-number-input/style.css'
 import flags from 'react-phone-number-input/flags'
 import PhoneInput from 'react-phone-number-input';
 import { Fade } from "react-awesome-reveal";
-import { useDispatch } from "react-redux";
-import { changeLeftSideBar } from "../../src/reducers/leftSideBar";
 
 
 
@@ -22,8 +20,6 @@ export default function Page() {
 
     const [showPassword, setShowPassword] = useState(false);
     const [phone, setPhone] = useState();
-    const dispacth = useDispatch();
-    dispacth(changeLeftSideBar({ show: false }));
 
     return (
         <div className="bg-image">
