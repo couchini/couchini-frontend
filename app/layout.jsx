@@ -1,4 +1,4 @@
-import "../static/styles/global.css";
+import "./global.css";
 
 export const metadata = {
     "title" : "couchini"

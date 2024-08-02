@@ -45,7 +45,7 @@ export default function Page() {
                             <input
                                 type="text"
                                 placeholder="Full Name"
-                                className="outline-none bg-inherit text-sky-400 p-2 text-lg col-span-7"
+                                className="outline-none bg-inherit text-sky-400 p-1 text-lg col-span-7"
                             />
                         </div>
                         <div className="my-4 bg-input focus-within:bg-sky-800 focus-within:border border-sky-400
@@ -60,7 +60,7 @@ export default function Page() {
                             <input
                                 type="email"
                                 placeholder="Email"
-                                className="outline-none bg-inherit text-sky-400 p-2 text-lg col-span-7"
+                                className="outline-none bg-inherit text-sky-400 p-1 text-lg col-span-7"
                             />
                         </div>
                         <div className="my-4 bg-input focus-within:bg-sky-800 focus-within:border border-sky-400
@@ -71,7 +71,7 @@ export default function Page() {
                             <input
                                 type={showPassword ? "text" : "password"}
                                 placeholder="Password"
-                                className="outline-none bg-inherit text-sky-400 p-2 text-lg col-span-6"
+                                className="outline-none bg-inherit text-sky-400 p-1 text-lg col-span-6"
                             />
                             <div className="col-span-1 flex items-center justify-center cursor-pointer">
                                 {
@@ -93,7 +93,7 @@ export default function Page() {
                             <input
                                 type="date"
                                 placeholder="Email"
-                                className="outline-none bg-inherit text-sky-400 p-2 text-lg col-span-7"
+                                className="outline-none bg-inherit text-sky-400 p-1 text-lg col-span-7"
                             />
                         </div>
                         <div className="my-4 bg-input  focus-within:border border-sky-400
