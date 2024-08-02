@@ -5,7 +5,7 @@ import { TbUserFilled } from "react-icons/tb";
 import MessageIcon from "../../static/icons/message.svg";
 import CalenderIcon from "../../static/icons/Calendar.svg";
 import { IoMdLock } from "react-icons/io";
-import { IoMdEyeOff } from "react-icons/io";
+import { IoMdEyeOff } from "react-icons/io"; 
 import { IoEye } from "react-icons/io5";
 import { useState } from "react";
 import Link from "next/link";
@@ -13,6 +13,8 @@ import 'react-phone-number-input/style.css'
 import flags from 'react-phone-number-input/flags'
 import PhoneInput from 'react-phone-number-input';
 import { Fade } from "react-awesome-reveal";
+import { useDispatch } from "react-redux";
+import { changeLeftSideBar } from "../../src/reducers/leftSideBar";
 
 
 
@@ -20,6 +22,8 @@ export default function Page() {
 
     const [showPassword, setShowPassword] = useState(false);
     const [phone, setPhone] = useState();
+    const dispacth = useDispatch();
+    dispacth(changeLeftSideBar({ show: false }));
 
     return (
         <div className="bg-image">

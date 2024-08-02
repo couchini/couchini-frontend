@@ -9,10 +9,14 @@ import { TbUserFilled } from "react-icons/tb";
 import GoogleIcon from "../../static/icons/google.svg";
 import Link from "next/link";
 import { Fade } from "react-awesome-reveal";
+import { useDispatch } from "react-redux";
+import { changeLeftSideBar } from "../../src/reducers/leftSideBar";
 
 export default function Page() {
 
     const [showPassword, setShowPassword] = useState(false);
+    const dispacth = useDispatch();
+    dispacth(changeLeftSideBar({ show: false }));
 
     return (
         <div className="bg-image text-white flex items-start justify-center p-12">
