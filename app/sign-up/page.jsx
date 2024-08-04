@@ -24,7 +24,7 @@ export default function Page() {
     return (
         <div className="bg-image">
             <Fade duration={300}>
-                <div className="bg-slate-800 w-96 h-full py-12">
+                <div className="bg-slate-800 w-96 h-screen py-12">
                     <div className="py-6 flex justify-center items-center">
                         <Image
                             src={Logo}

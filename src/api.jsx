@@ -1,9 +1,9 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-export const API = axios.create({
-    baseURL : "https://api.couchini.app/swagger/"
-});
+const API = axios.create({
+    baseURL : "https://api.couchini.app/"
+});export default API;
 
 API.interceptors.request.use((config) => {
     if (Cookies.get("access_token")){
