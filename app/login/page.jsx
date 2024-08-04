@@ -1,97 +1,61 @@
 "use client"
-import { useState } from "react";
 import Logo from "../../static/images/Couchini Logo.png";
 import Image from "next/image";
-import { IoMdLock } from "react-icons/io";
-import { IoMdEyeOff } from "react-icons/io";
-import { IoEye } from "react-icons/io5";
-import { TbUserFilled } from "react-icons/tb";
-import GoogleIcon from "../../static/icons/google.svg";
-import Link from "next/link";
 import { Fade } from "react-awesome-reveal";
+import Link from "next/link";
+import { IoCall } from "react-icons/io5";
+import GoogleIcon from "../../static/icons/google.svg";
+
 
 export default function Page() {
-
-    const [showPassword, setShowPassword] = useState(false);
-
     return (
-        <div className="bg-image text-white flex items-start justify-center p-12">
+        <>
+            <div className="bg-image"></div>
             <Fade duration={300}>
-                <div className="w-96 h-full">
-                    <div className="py-6 flex justify-center items-center">
-                        <Image
-                            src={Logo}
-                            alt="logo"
-                            className="size-32"
-                        />
+                <div className="flex justify-center">
+                    <div className="md:w-96 w-80 py-12">
+                        <div className="grid grid-cols-1 gap-6">
+                            <Image
+                                src={Logo}
+                                alt="logo"
+                                className="size-28 col-span-1 mx-auto"
+                            />
+                            <h1 className="col-span-1 text-sky-600 text-2xl font-bold mx-auto">Welcome</h1>
+                            <div className="text-white col-span-1 mx-auto">
+                                <p className="text-lg font-medium">Stream Million Songs</p>
+                                <div className="flex items-center gap-2 text-xl">
+                                    <p className="font-bold">Free on</p>
+                                    <p className="font-matura text-sky-500">Couchini</p>
+                                </div>
+                            </div>
+                            <div className="col-span-1 mx-auto">
+                                <Link href={"/login/phone"}>
+                                    <button className="text-white bg-sky-600 md:grid grid-cols-4 p-2 items-center 
+                                    rounded-lg hover:bg-sky-700 transition w-full my-2">
+                                        <IoCall className="text-white hidden md:block col-span-1 mx-2" size={"1.2rem"} />
+                                        <p className="hidden md:block col-span-2 text-sm md:text-md font-semibold">Continue with Phone</p>
+                                        <p className="text-sm font-semibold md:hidden">Sign up free</p>
+                                    </button>
+                                </Link>
+                                <button className="bg-inherit text-white grid grid-cols-4 w-full border border-white rounded-lg 
+                                p-2 my-2 hover:bg-gray-400 transition">
+                                    <Image
+                                        priority={false}
+                                        src={GoogleIcon}
+                                        alt="google icon"
+                                        className="col-span-1"
+                                    />
+                                    <p className="col-span-2 text-sm md:text-md font-semibold">Continue with Google</p>
+                                </button>
+                            </div>
+                            <div className="text-sm flex items-center col-span-1 mx-auto gap-2">
+                                <p className="text-sky-500">Already have an account?</p>
+                                <Link className="text-white font-semibold" href={"/login/password"}>Log in</Link>
+                            </div>
+                        </div>
                     </div>
-                    <h1 className="text-center text-white text-2xl font-semibold">
-                        Login To Your
-                        <span className="font-matura mx-2 text-sky-600 text-3xl">Couchini</span>
-                    </h1>
-                    <form className="my-4 px-4 mx-6">
-                        <div className="my-4 bg-input focus-within:bg-sky-800 focus-within:border border-sky-400
-                        w-full grid grid-cols-8 justify-center items-center p-1 rounded-xl transition">
-                            <div className="col-span-1 flex items-center justify-center">
-                                <TbUserFilled className="text-gray-400" size={"1.5rem"} />
-                            </div>
-                            <input
-                                type="text"
-                                placeholder="Email or Phone"
-                                className="outline-none bg-inherit text-sky-400 p-2 text-lg col-span-7"
-                            />
-                        </div>
-                        <div className="my-4 bg-input focus-within:bg-sky-800 focus-within:border border-sky-400
-                        w-full grid grid-cols-8 justify-center items-center p-1 rounded-xl transition">
-                            <div className="col-span-1 flex items-center justify-center">
-                                <IoMdLock className="text-sky-600" size={"1.5rem"} />
-                            </div>
-                            <input
-                                type={showPassword ? "text" : "password"}
-                                placeholder="Password"
-                                className="outline-none bg-inherit text-sky-400 p-2 text-lg col-span-6"
-                            />
-                            <div className="col-span-1 flex items-center justify-center cursor-pointer">
-                                {
-                                    showPassword ?
-                                        <IoEye className="text-sky-600" size={"1.5rem"} onClick={() => setShowPassword(false)} /> :
-                                        <IoMdEyeOff className="text-sky-600" size={"1.5rem"} onClick={() => setShowPassword(true)} />
-                                }
-                            </div>
-                        </div>
-                        <div className="flex my-3 items-center gap-3 justify-center">
-                            <input
-                                type="checkbox"
-                                className="text-lg"
-                            />
-                            <p className="text-lg text-white font-semibold ">Remember me</p>
-                        </div>
-                        <button className="text-white text-lg font-semibold bg-sky-600 w-full p-2 my-2 rounded-xl hover:bg-sky-700" type="submit">Log in</button>
-                        <button className="text-white border border-whtie w-full my-2 p-2 rounded-xl text-lg font-semibold">Send a Verification Code</button>
-                        <div className="grid grid-cols-4 items-center my-3">
-                            <div className="col-span-1 h-0.5 bg-gray-400 w-full"></div>
-                            <p className="text-white col-span-2 text-center font-semibold">or continue with</p>
-                            <div className="col-span-1 h-0.5 bg-gray-400 w-full"></div>
-                        </div>
-                        <div className="flex items-center justify-center my-3" >
-                            <div className="py-2 border border-white rounded-xl px-6">
-                                <Image
-                                    src={GoogleIcon}
-                                    alt="google icon"
-                                    className="size-6"
-                                />
-                            </div>
-                        </div>
-                        <div className="flex items-center justify-center gap-2">
-                            <p className="text-white">Already have an account?</p>
-                            <Link className="text-sky-500 font-semibold" href={"/sign-up"}>Sign Up</Link>
-                        </div>
-                        <div className="text-center my-3">
-                            <Link className="text-white font-semibold" href={"/password/reset"}>Reset Password</Link>
-                        </div>
-                    </form>
                 </div>
             </Fade>
-        </div>
+        </>
     )
 };
