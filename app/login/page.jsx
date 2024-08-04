@@ -43,7 +43,7 @@ export default function Page() {
                                         priority={false}
                                         src={GoogleIcon}
                                         alt="google icon"
-                                        className="col-span-1"
+                                        className="col-span-1 mx-2 size-5"
                                     />
                                     <p className="col-span-2 text-sm md:text-md font-semibold">Continue with Google</p>
                                 </button>
