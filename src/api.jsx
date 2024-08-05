@@ -6,8 +6,18 @@ const API = axios.create({
 });export default API;
 
 API.interceptors.request.use((config) => {
-    if (Cookies.get("access_token")){
+    if (Cookies.get("access")){
         config.headers.Authorization = "Bearer " + Cookies.get("access_token");
     }
     return config;
-})
+});
+
+export const setToken = (access,refresh=null) => {
+    Cookies.set("access",access,{secure : true ,expires : 7});
+    refresh && Cookies.set("refresh",refresh,{secure : true , expires : 7});
+}
+
+export const clearToken = () => {
+    Cookies.remove("access");
+    Cookies.remove("refresh");
+}

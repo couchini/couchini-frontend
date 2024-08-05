@@ -13,11 +13,12 @@ import 'react-phone-number-input/style.css'
 import flags from 'react-phone-number-input/flags'
 import PhoneInput from 'react-phone-number-input';
 import { Fade } from "react-awesome-reveal";
-import API from "../../src/api";
+import API, { clearToken } from "../../src/api";
 import Loading from "../components/loading";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { changeUser } from "../../src/reducers/user";
+import { toast } from "react-toastify";
 
 
 
@@ -44,13 +45,14 @@ export default function Page() {
     }
 
     const submitHandeler = async (e) => {
+        clearToken();
         e.preventDefault();
         setShowLoading(true);
         await API.post("/auth/register/", { ...data, phone_number: phone.slice(3) }).then((response) => {
             dispatch(changeUser({ phone: phone }))
             router.push("/login/otp")
         }).catch((error) => {
-            console.log(error.response.data)
+            error.response && error.response.data && toast.error(error.response.data.message);
         }).finally(() => setTimeout(() => setShowLoading(false), 400));
     };
 
