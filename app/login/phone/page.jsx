@@ -6,33 +6,39 @@ import Image from "next/image";
 import 'react-phone-number-input/style.css';
 import flags from 'react-phone-number-input/flags'
 import PhoneInput from 'react-phone-number-input';
-import API from "../../../src/api";
+import API, { clearToken } from "../../../src/api";
 import Loading from "../../components/loading";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { changeUser } from "../../../src/reducers/user";
+
+
 
 export default function Page() {
     const [phone, setPhone] = useState();
     const router = useRouter();
     const [showLoading, setShowLoading] = useState(true);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        setTimeout(() => setShowLoading(false) , 400)
-    },[]);
+        setTimeout(() => setShowLoading(false), 400)
+    }, []);
 
     const submitHandeler = async (e) => {
+        clearToken();
         e.preventDefault();
         if (phone.slice(3).length === 10) {
             setShowLoading(true);
             console.log("send api data")
-            await API.post("/auth/login/", { phone_number: '0' + String(phone).slice(3) }).then((response) => {
-                console.log(response.data)
-                response.data.user_exist ? router.push("/login/password") : router.push("/sign-up")
+            await API.post("/auth/login/", { phone_number: phone.slice(3) }).then((response) => {
+                dispatch(changeUser({phone : phone}))
+                response.data.user_exist ? router.push("/login/otp") : router.push("/sign-up")
             }).catch((error) => {
                 console.log(error)
                 console.log(error.response && error.response.data);
-            }).finally(() => setTimeout(() => setShowLoading(false) , 400))
+            }).finally(() => setTimeout(() => setShowLoading(false), 400))
         } else {
             toast.error("شماره وارد شده معتبر نمی باشد")
         }

@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Loading from "../../components/loading";
 import { Fade } from "react-awesome-reveal";
 import Image from "next/image";
@@ -8,19 +8,58 @@ import Logo from "../../../static/images/Couchini Logo.png";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
-import API, { setToken , clearToken } from "../../../src/api";
+import API, { setToken, clearToken } from "../../../src/api";
 import { toast } from "react-toastify";
 import { changeUser } from "../../../src/reducers/user";
+import OTPInput from "react-otp-input";
 
 export default function Page() {
     const [showLoading, setShowLoading] = useState(true);
     const [otp, setOtp] = useState();
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
-    const router = useRouter()
+    const router = useRouter();
+    const [showResend, setShowResend] = useState(false);
+    const timerInterval = useRef();
+    let time = 180;
 
 
-    useEffect(() => { setTimeout(() => setShowLoading(false), 400) }, []);
+    const timer = () => {
+        if (time > 0) {
+            time--;
+            if (document.getElementById("timer")) {
+                document.getElementById("timer").innerText = ` ${time} `;
+            }
+        } else {
+            setShowResend(true);
+            time = 180
+            clearInterval(timerInterval.current);
+        }
+    };
+
+    if (!timerInterval.current) {
+        timerInterval.current = setInterval(timer, 1000);
+    }
+
+
+    useEffect(() => {
+        setTimeout(() => setShowLoading(false), 400);
+    }, []);
+
+    const ResendCode = async () => {
+        setShowResend(false);
+        timerInterval.current = setInterval(timer, 1000);
+        if (user.phone) {
+            await API.post("/auth/otp-resend/", { phone_number: user.phone.slice(3) }).then((response) => {
+                toast.success("opt code sent");
+            }).catch((error) => {
+                error.response && error.response.data.message && toast.error(error.response.data.message);
+                error.response && error.response.status === 401 && ResendCode();
+            })
+        } else {
+            router.push("/login/phone");
+        }
+    };
 
     const submitHandeler = async (e) => {
         clearToken();
@@ -29,7 +68,7 @@ export default function Page() {
 
         user.phone ? await API.post("/auth/otp-verify/", { phone_number: user.phone.slice(3), code: otp }).then((response) => {
             setToken(response.data.access, response.data.refresh);
-            dispatch(changeUser({is_login : true}));
+            dispatch(changeUser({ is_login: true }));
             toast.success("welcome to couchini ")
             router.push("/home");
         }).catch((error) => {
@@ -57,19 +96,33 @@ export default function Page() {
                                     <p className="font-matura text-sky-500 text-3xl">Couchini</p>
                                 </h1>
                                 <div className="text-white col-span-1 mx-auto text-center">
-                                    <p className="text-lg font-medium">Enter Your Phone</p>
-                                    <p className="text-xs">to Continue with send a Verification code</p>
+                                    <p className="text-sm">Code has been send to
+                                        {user.phone && user.phone.slice(0, 4)}***
+                                        {user.phone && user.phone.slice(8)}</p>
                                 </div>
-                                <input
-                                    className="col-span-1 bg-blue-950 rounded-lg p-2 text-lg text-white font-semibold outline-none"
-                                    placeholder="opt code"
-                                    required
-                                    onChange={(e) => setOtp(e.target.value)}
+                                <OTPInput
+                                    onChange={setOtp}
+                                    value={otp}
+                                    numInputs={5}
+                                    inputStyle={{
+                                        backgroundColor: "rgba(0, 0, 0, 0.493)",
+                                        border: "1px solid #0ea5e9",
+                                        width: "100%"
+                                    }}
+                                    renderSeparator={<span>-</span>}
+                                    renderInput={(props) => <input required {...props} className="font-bold py-4 rounded-xl text-white w-full outline-none" />}
                                 />
                                 <button type="submit" className="text-white bg-sky-600 p-2 items-center 
                                     rounded-lg hover:bg-sky-700 transition w-full my-2 col-span-1">
                                     <p className="text-sm md:text-lg font-semibold">Continue</p>
                                 </button>
+                                {
+                                    showResend ? <a
+                                        onClick={() => ResendCode()}
+                                        className="text-white p-1 rounded-lg mx-auto cursor-pointer">Resend Code</a> :
+                                        <p className="text-sky-600 text-sm font-semibold mx-auto">Resend Code in
+                                            <span id="timer" className="text-white"></span> seconds </p>
+                                }
                                 <div className="text-sm flex items-center col-span-1 mx-auto gap-2">
                                     <p className="text-sky-600 font-semibold">Back to Sign in With</p>
                                     <Link className="text-white font-semibold" href={"/login/password"}>Password</Link>
