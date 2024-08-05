@@ -1,42 +1,18 @@
 "use client"
-import { Fade } from "react-awesome-reveal";
-import Link from "next/link";
-import Logo from "../../../static/images/Couchini Logo.png";
-import Image from "next/image";
-import 'react-phone-number-input/style.css';
-import flags from 'react-phone-number-input/flags'
-import PhoneInput from 'react-phone-number-input';
-import API from "../../../src/api";
-import Loading from "../../components/loading";
+
 import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
+import Loading from "../../components/loading";
+import { Fade } from "react-awesome-reveal";
+import Image from "next/image";
 
 export default function Page() {
-    const [phone, setPhone] = useState();
-    const router = useRouter();
     const [showLoading, setShowLoading] = useState(true);
 
-    useEffect(() => {
-        setTimeout(() => setShowLoading(false) , 400)
-    },[]);
+    useEffect(() => {setTimeout(() => setShowLoading(false) , 400)} , [])
 
     const submitHandeler = async (e) => {
         e.preventDefault();
-        if (phone.slice(3).length === 10) {
-            setShowLoading(true);
-            console.log("send api data")
-            await API.post("/auth/login/", { phone_number: '0' + String(phone).slice(3) }).then((response) => {
-                console.log(response.data)
-                response.data.user_exist ? router.push("/login/password") : router.push("/sign-up")
-            }).catch((error) => {
-                console.log(error)
-                console.log(error.response && error.response.data);
-            }).finally(() => setTimeout(() => setShowLoading(false) , 400))
-        } else {
-            toast.error("شماره وارد شده معتبر نمی باشد")
-        }
-    };
+    } 
     return (
         <>
             <div className="bg-image"></div>
@@ -46,7 +22,7 @@ export default function Page() {
             {
                 !showLoading && <Fade duration={300}>
                     <div className="flex justify-center">
-                        <form className="md:w-96 w-80 py-12" onSubmit={submitHandeler}>
+                        {/* <form className="md:w-96 w-80 py-12" onSubmit={submitHandeler}>
                             <div className="grid grid-cols-1 gap-4 p-1">
                                 <Image
                                     src={Logo}
@@ -61,14 +37,8 @@ export default function Page() {
                                     <p className="text-lg font-medium">Enter Your Phone</p>
                                     <p className="text-xs">to Continue with send a Verification code</p>
                                 </div>
-                                <PhoneInput
-                                    onChange={setPhone}
-                                    value={phone}
+                                <input
                                     className="col-span-1 bg-blue-950 rounded-lg p-1 py-2 text-lg text-white font-semibold"
-                                    id="phone-input"
-                                    required={true}
-                                    flags={flags}
-                                    limitMaxLength={12}
                                 />
                                 <button type="submit" className="text-white bg-sky-600 p-2 items-center 
                                     rounded-lg hover:bg-sky-700 transition w-full my-2 col-span-1">
@@ -79,7 +49,7 @@ export default function Page() {
                                     <Link className="text-white font-semibold" href={"/login/password"}>Password</Link>
                                 </div>
                             </div>
-                        </form>
+                        </form> */}
                     </div>
                 </Fade>
             }
