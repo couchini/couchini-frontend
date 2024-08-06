@@ -55,4 +55,5 @@ input[type=checkbox]:checked::before {
 #phone-input {
     background-color: inherit;
     outline: none;
+    background-color: rgba(0, 0, 0, 0.493);
 }
