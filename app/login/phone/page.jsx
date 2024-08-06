@@ -33,7 +33,7 @@ export default function Page() {
             setShowLoading(true);
             console.log("send api data")
             await API.post("/auth/login/", { phone_number: phone.slice(3) }).then((response) => {
-                dispatch(changeUser({phone : phone}))
+                dispatch(changeUser({ phone: phone }))
                 response.data.user_exist ? router.push("/login/otp") : router.push("/sign-up")
             }).catch((error) => {
                 console.log(error)

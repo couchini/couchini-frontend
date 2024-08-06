@@ -64,38 +64,39 @@ export default function Page() {
             }
             {
                 !showLoading && <Fade duration={300}>
-                    <div className="bg-slate-800 w-96 h-screen py-6">
-                        <div className="flex justify-center items-center">
-                            <Image
-                                src={Logo}
-                                alt="logo"
-                                className="w-24"
-                            />
-                        </div>
-                        <h1 className="text-center text-white text-2xl font-semibold">
-                            Create Your
-                            <span className="font-matura mx-2 text-sky-600 text-3xl">Couchini</span>
-                        </h1>
-                        <form
-                            method="post"
-                            className="my-4 px-4 mx-6"
-                            onSubmit={submitHandeler}>
-                            <div className="my-4 bg-input focus-within:bg-sky-800 focus-within:border border-sky-400
-                            w-full grid grid-cols-8 justify-center items-center p-1 rounded-xl transition">
-                                <div className="col-span-1 flex items-center justify-center">
-                                    <TbUserFilled
-                                        className="text-sky-600"
-                                        size={"1.5rem"} />
-                                </div>
-                                <input
-                                    type="text"
-                                    placeholder="Full Name"
-                                    required
-                                    onChange={(e) => setData({ ...data, first_name: e.target.value })}
-                                    className="outline-none bg-inherit text-sky-400 p-1 text-md col-span-7"
+                    <div className=" w-full flex items-center justify-center h-screen md:w-96 md:justify-start bg-slate-800">
+                        <div className="md:w-96 w-80 py-6">
+                            <div className="flex justify-center items-center">
+                                <Image
+                                    src={Logo}
+                                    alt="logo"
+                                    className="w-24"
                                 />
                             </div>
-                            {/* <div className="my-4 bg-input focus-within:bg-sky-800 focus-within:border border-sky-400
+                            <h1 className="text-center text-white text-2xl font-semibold">
+                                Create Your
+                                <span className="font-matura mx-2 text-sky-600 text-3xl">Couchini</span>
+                            </h1>
+                            <form
+                                method="post"
+                                className="my-4 px-4 mx-6"
+                                onSubmit={submitHandeler}>
+                                <div className="my-4 bg-input focus-within:bg-sky-800 focus-within:border border-sky-400
+                            w-full grid grid-cols-8 justify-center items-center p-1 rounded-xl transition">
+                                    <div className="col-span-1 flex items-center justify-center">
+                                        <TbUserFilled
+                                            className="text-sky-600"
+                                            size={"1.5rem"} />
+                                    </div>
+                                    <input
+                                        type="text"
+                                        placeholder="Full Name"
+                                        required
+                                        onChange={(e) => setData({ ...data, first_name: e.target.value })}
+                                        className="outline-none bg-inherit text-sky-400 p-1 text-md col-span-7"
+                                    />
+                                </div>
+                                {/* <div className="my-4 bg-input focus-within:bg-sky-800 focus-within:border border-sky-400
                         w-full grid grid-cols-8 justify-center items-center p-1 rounded-xl transition">
                             <div className="col-span-1 flex items-center justify-center">
                                 <Image
@@ -112,7 +113,7 @@ export default function Page() {
                                 className="outline-none bg-inherit text-sky-400 p-1 text-md col-span-7"
                             />
                         </div> */}
-                            {/* <div className="my-4 bg-input focus-within:bg-sky-800 focus-within:border border-sky-400
+                                {/* <div className="my-4 bg-input focus-within:bg-sky-800 focus-within:border border-sky-400
                         w-full grid grid-cols-8 justify-center items-center p-1 rounded-xl transition">
                             <div className="col-span-1 flex items-center justify-center">
                                 <IoMdLock 
@@ -139,76 +140,77 @@ export default function Page() {
                                 }
                             </div>
                         </div> */}
-                            <div className="my-4 bg-input focus-within:bg-sky-800 focus-within:border border-sky-400
-                        w-full grid grid-cols-8 justify-center items-center p-1 rounded-xl transition">
-                                <div className="col-span-1 flex items-center justify-center">
-                                    <Image
-                                        src={CalenderIcon}
-                                        alt="calender-icon"
-                                        className="size-6"
+                                <div className="my-4 bg-input focus-within:bg-sky-800 focus-within:border border-sky-400
+                                    w-full grid grid-cols-8 justify-center items-center p-1 rounded-xl transition">
+                                    <div className="col-span-1 flex items-center justify-center">
+                                        <Image
+                                            src={CalenderIcon}
+                                            alt="calender-icon"
+                                            className="size-6"
+                                        />
+                                    </div>
+                                    <input
+                                        type="date"
+                                        onChange={dateChangeHandeler}
+                                        required
+                                        className="outline-none bg-inherit text-sky-400 p-1 text-md col-span-7"
                                     />
                                 </div>
-                                <input
-                                    type="date"
-                                    onChange={dateChangeHandeler}
-                                    required
-                                    className="outline-none bg-inherit text-sky-400 p-1 text-md col-span-7"
-                                />
-                            </div>
-                            <div className="my-4 bg-input  focus-within:border border-sky-400
-                        w-full grid grid-cols-8 justify-center items-center p-1 rounded-xl transition">
-                                <PhoneInput
-                                    className="outline-none bg-input text-sky-400 p-2 text-md col-span-7"
-                                    value={phone}
-                                    placeholder="Enter phone number"
-                                    flags={flags}
-                                    required
-                                    id="phone-input"
-                                    onChange={setPhone}
-                                />
-                            </div>
-                            <div className="flex items-center justify-around gap-6">
-                                <div className="flex items-center gap-1">
-                                    <input
-                                        type="radio"
-                                        name="gender"
+                                <div className="my-4 bg-input  focus-within:border border-sky-400
+                                    w-full grid grid-cols-8 justify-center items-center p-1 rounded-xl transition">
+                                    <PhoneInput
+                                        className="outline-none bg-input text-sky-400 p-2 text-md col-span-7"
+                                        value={phone}
+                                        placeholder="Enter phone number"
+                                        flags={flags}
                                         required
-                                        onChange={(e) => setData({ ...data, gender: e.target.value })}
-                                        className="text-sky-400 size-6"
-                                        value={"MR"} />
-                                    <p className="text-white text-sm">Male</p>
+                                        id="phone-input"
+                                        onChange={setPhone}
+                                    />
                                 </div>
-                                <div className="flex items-center gap-1">
-                                    <input
-                                        type="radio"
-                                        name="gender"
-                                        className="text-sky-400 size-6"
-                                        required
-                                        onChange={(e) => setData({ ...data, gender: e.target.value })}
-                                        value={"MS"} />
-                                    <p className="text-white text-sm">Female</p>
+                                <div className="flex items-center justify-around gap-6">
+                                    <div className="flex items-center gap-1">
+                                        <input
+                                            type="radio"
+                                            name="gender"
+                                            required
+                                            onChange={(e) => setData({ ...data, gender: e.target.value })}
+                                            className="text-sky-400 size-6"
+                                            value={"MR"} />
+                                        <p className="text-white text-sm">Male</p>
+                                    </div>
+                                    <div className="flex items-center gap-1">
+                                        <input
+                                            type="radio"
+                                            name="gender"
+                                            className="text-sky-400 size-6"
+                                            required
+                                            onChange={(e) => setData({ ...data, gender: e.target.value })}
+                                            value={"MS"} />
+                                        <p className="text-white text-sm">Female</p>
+                                    </div>
+                                    <div className="flex items-center gap-1">
+                                        <input
+                                            type="radio"
+                                            name="gender"
+                                            required
+                                            className="text-sky-400 size-6"
+                                            onChange={(e) => setData({ ...data, gender: e.target.value })}
+                                            value={"PNS"} />
+                                        <p className="text-white text-sm">Non Binary</p>
+                                    </div>
                                 </div>
-                                <div className="flex items-center gap-1">
-                                    <input
-                                        type="radio"
-                                        name="gender"
-                                        required
-                                        className="text-sky-400 size-6"
-                                        onChange={(e) => setData({ ...data, gender: e.target.value })}
-                                        value={"PNS"} />
-                                    <p className="text-white text-sm">Non Binary</p>
+                                <button
+                                    className="text-white text-lg font-semibold bg-sky-600 w-full p-2 my-6 rounded-xl hover:bg-sky-700"
+                                    type="submit">Sign Up</button>
+                                <div className="text-white flex gap-2 items-center justify-center text-sm font-semibold">
+                                    <p>Already have an account?</p>
+                                    <Link
+                                        href={"/login"}
+                                        className="text-sky-500">Sign In</Link>
                                 </div>
-                            </div>
-                            <button
-                                className="text-white text-lg font-semibold bg-sky-600 w-full p-2 my-6 rounded-xl hover:bg-sky-700"
-                                type="submit">Sign Up</button>
-                            <div className="text-white flex gap-2 items-center justify-center text-sm font-semibold">
-                                <p>Already have an account?</p>
-                                <Link
-                                    href={"/login"}
-                                    className="text-sky-500">Sign In</Link>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </Fade>
             }

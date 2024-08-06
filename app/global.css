@@ -55,11 +55,13 @@ input[type=checkbox]:checked::before {
 #phone-input {
     background-color: inherit;
     outline: none;
-    background-color: rgba(0, 0, 0, 0.493);
+    background-color: inherit;
+    direction: ltr;
+    /* background-color: rgba(0, 0, 0, 0.493); */
 }
 
 
-/* home slider */
+/* home playlist slider */
 .home-slider{
     margin: .5rem 0;
     width: 100%;
@@ -78,4 +80,23 @@ input[type=checkbox]:checked::before {
     }
 }
 
-/* end home slider */
+/* end home playlist slider */
+
+/* home genres moods */
+.home-genres-slider {
+    display: grid;
+    grid-template-rows: 1fr 1fr ;
+    grid-auto-flow: column;
+    grid-auto-columns: 5.5rem ;
+    gap: .5rem;
+    overflow-x: scroll;
+}
+
+@media only screen and (min-width :768px){
+    .home-genres-slider {
+        overflow: hidden;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+}
+
+/* end home genres moods */
