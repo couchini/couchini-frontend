@@ -9,7 +9,7 @@ import Image from "next/image";
 
 export default function LeftSideBar({ current }) {
     return (
-        <div className="bg-slate-900 md:h-screen sm:w-full grid grid-cols-1">
+        <div className="bg-slate-900 md:h-full sm:w-full grid grid-cols-1">
             <div className="flex md:grid grid-col-1 md:justify-normal justify-around 
             md:self-start md:py-4 border-b border-gray-800 col-span-1">
                 <div className="md:grid flex flex-col grid-cols-6 my-2 items-center">

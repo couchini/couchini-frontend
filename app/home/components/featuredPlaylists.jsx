@@ -12,7 +12,7 @@ export default function FeturedPlaylist({ playlists }) {
                             <div key={item.playlist_id} className="home-slider-slide">
                                 <img
                                     src={API.defaults.baseURL + item.cover}
-                                    className="w-full h-24 object-cover rounded-xl"    
+                                    className="w-full h-24 object-cover rounded-xl"
                                 />
                                 <h4 className="text-xs md:text-lg px-1 text-white">{item.title}</h4>
                             </div>
