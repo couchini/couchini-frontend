@@ -14,7 +14,7 @@ export default function FeturedPlaylist({ playlists }) {
                                     src={API.defaults.baseURL + item.cover}
                                     className="w-full h-24 object-cover rounded-xl"
                                 />
-                                <h4 className="text-xs md:text-lg px-1 text-white">{item.title}</h4>
+                                <h4 className="text-xs md:text-md px-1 text-white">{item.title}</h4>
                             </div>
                         )
                     })

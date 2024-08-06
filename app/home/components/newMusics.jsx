@@ -7,7 +7,6 @@ export default function NewMusics({ new_musics }) {
             <div className="home-slider">
                 {
                     new_musics && new_musics.filter((item, index) => index < 6).map((item) => {
-                        console.log(item.singer[0]);
                         return (
                             <div key={item.music_id} className="home-slider-slide">
                                 <img

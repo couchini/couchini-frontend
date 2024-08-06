@@ -5,6 +5,7 @@ import Loading from "../../components/loading";
 const FeturedPlaylists = lazy(() => import("./featuredPlaylists"));
 const Genres = lazy(() => import("./genres"));
 const NewSongs = lazy(() => import("./newMusics"));
+const TopArtists = lazy(() => import("./topArtists"));
 
 
 export default function GetData() {
@@ -12,12 +13,14 @@ export default function GetData() {
     const [showLoading, setShowLoading] = useState(true);
     const [newMusics, setNewMusics] = useState();
     const [genres, setGenres] = useState();
+    const [artists,setArtists] = useState();
 
     const getData = async () => {
         await API.get("/home/").then((response) => {
             setFeaturedPlaylists(response.data.Feature_Playlist);
             setGenres(response.data.genre);
             setNewMusics(response.data.new_musics);
+            setArtists(response.data.top_artist);
         }).catch((error) => {
             error.response && error.response.status === 401 && getData();
         }).finally(() => setTimeout(() => setShowLoading(false), 400));
@@ -39,6 +42,9 @@ export default function GetData() {
                     }
                     {
                         newMusics && <NewSongs new_musics={newMusics} />
+                    }
+                    {
+                        artists && <TopArtists artists={artists} />
                     }
                     {
                         genres && <Genres genres={genres} />
