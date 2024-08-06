@@ -11,10 +11,9 @@ export default function GetData() {
 
     const getData = async () => {
         await API.get("/home/").then((response) => {
-            console.log(response.data);
+            setFeaturedPlaylists(response.data.Feature_Playlist);
         }).catch((error) => {
-            console.log(error);
-            error.response && error.response.status === 401 && setTimeout(() => getData() , 4000);
+            error.response && error.response.status === 401 && getData();
         }).finally(() => setTimeout(() => setShowLoading(false), 400));
     };
 
