@@ -17,13 +17,13 @@ API.interceptors.request.use((config) => {
 
 export const handle401Error = () => {
     if (Cookies.get("refresh")) {
-        console.log("refresh exist");
         (async () => {
             await API.post("/auth/token/refresh/", { refresh: Cookies.get("refresh") }).then((response) => {
-                console.log(response);
                 setToken(response.data.access);
             }).catch((error) => {
-                console.log(error)
+                Store.dispatch(changeUser({
+                    return_login: true
+                }))
                 error.response && error.response.status === 401 && Store.dispatch(changeUser({
                     is_login: false,
                     return_login: true,
@@ -31,7 +31,6 @@ export const handle401Error = () => {
             })
         })();
     } else {
-        console.log("refresh not exist ");
         Store.dispatch(changeUser({
             is_login: false,
             return_login: true

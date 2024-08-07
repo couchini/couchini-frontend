@@ -44,6 +44,7 @@ export default function Page() {
 
     useEffect(() => {
         setTimeout(() => setShowLoading(false), 400);
+        !user.phone && router.push("/login/phone");
     }, []);
 
     const ResendCode = async () => {

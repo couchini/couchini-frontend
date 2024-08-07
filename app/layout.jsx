@@ -4,6 +4,7 @@ import StoreProvider from "./storeProvider";
 import { ToastContainer } from "react-toastify";
 import Loading from "./components/loading";
 import { Suspense } from "react";
+import Auth from "./components/auth";
 
 export const metadata = {
     "title": "couchini"
@@ -15,7 +16,9 @@ export default function Layout({ children }) {
             <body>
                 <StoreProvider>
                     <Suspense fallback={<Loading />}>
-                        {children}
+                        <Auth>
+                            {children}
+                        </Auth>
                         <ToastContainer
                             draggable={true}
                             theme="dark"
