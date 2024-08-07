@@ -35,7 +35,7 @@ export default function Page() {
             time = 180
             clearInterval(timerInterval.current);
         }
-    };
+    };  
 
     if (!timerInterval.current) {
         timerInterval.current = setInterval(timer, 1000);
