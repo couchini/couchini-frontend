@@ -10,7 +10,7 @@ import Link from "next/link";
 
 export default function LeftSideBar({ current }) {
     return (
-        <div className="bg-slate-900 md:h-full md:absolute  fixed bottom-0 right-0 left-0 border-t border-gray-400">
+        <div className="bg-slate-900 md:h-full md:absolute  fixed bottom-0 right-0 left-0 border-t border-gray-400 z-50">
             <div className="flex md:grid grid-col-1 md:justify-normal justify-around 
             md:self-start md:py-4 border-b border-gray-800">
 

@@ -1,9 +1,10 @@
 "use client"
-
+import "../../../../static/styles/home/styles.css";
 import { useParams } from "next/navigation";
 import API from "../../../../src/api";
 import { useMemo, useState } from "react";
 import Loading from "../../../components/loading";
+import Info from "./components/info";
 
 export default function Page() {
     const [playlist, setPlaylist] = useState();
@@ -12,6 +13,7 @@ export default function Page() {
     const getData = async () => {
         await API.get(`/playlist/${params.id}/`).then((response) => {
             setPlaylist(response.data.playlist)
+            console.log(response.data.playlist)
         }).catch((error) => {
             error.response && error.response.status === 401 && getData();
         }).finally(() => setTimeout(() => setShowLoading(false) , 400));
@@ -24,7 +26,11 @@ export default function Page() {
                 showLoading && <Loading />
             }
             {
-                !showLoading && <div>hello</div>
+                !showLoading && <div>
+                    {
+                        playlist && <Info playlist={playlist} />
+                    }
+                </div>
             }
         </>
     )
